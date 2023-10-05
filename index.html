@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="The first iteration of my habit trackign app called remind">
+    <link type="text/css" rel="stylesheet" href="styles/normalize.css">
+    <link type="text/css" rel="stylesheet" href="styles/base.css">
+    <link type="text/css" rel="stylesheet" href="styles/small.css">
+    <link type="text/css" rel="stylesheet" href="styles/medium.css">
+    <link type="text/css" rel="stylesheet" href="styles/large.css">
+    <link rel="icon" href="favicon.ico">
+    <title>Homepage</title>
+    <!-- This is a comment -->
+    <title>Document</title>
+</head>
+<body>
+    <header>
+        <div class="user-info">
+            <img class="user-img" src="images/user_image.png" alt="User image">
+            <h2 class="username"> {username_placeholder}</h2>
+        </div>
+    </header>
+    <main>
+
+        <img class="top-right-curve" src="images/corner.png">
+        <img class="top-left-curve" src="images/corner.png">
+
+
+        <div class="habits">
+            <div class="top-bar">
+                <h1>Habits</h1>
+                <button class="add-button" id="add-habit-button"><span>&#43;</span></button>
+                <button class="dropdown-button" id="habit-dropdown" data-target="habit-checklist"><span>	&#9660;</span></button>
+            </div>
+            <hr>
+            <div class="task-creation" id="habit-creation">
+                <p>Task:</p>
+                <input type="text" class="task-text" id="habit-task-input">
+            </div>
+            <div  id="habit-checklist">
+            </div>
+        </div>
+        <div class="daylies">
+            <div class="top-bar">
+                <h1>Daylies</h1>
+                <button class="add-button" id="add-daily-button"><span>&#43;</span></button>
+                <button class="dropdown-button" id="daily-dropdown" data-target="daily-checklist"><span>	&#9660;</span></button>
+            </div>
+            <hr>
+            <div class="task-creation" id="daily-creation">
+                <p>Task:</p>
+                <input type="text" class="task-text" id="daily-task-input">
+            </div>
+            <div  id="daily-checklist">
+            </div>
+        </div>
+        <div class="weeklies">
+            <div class="top-bar">
+                <h1>Weeklies</h1>
+                <button class="add-button" id="add-weekly-button"><span>&#43;</span></button>
+                <button class="dropdown-button" id="weekly-dropdown" data-target="weekly-checklist"><span>	&#9660;</span></button>
+            </div>
+            <hr>
+            <div class="task-creation" id="weekly-creation">
+                <p>Task:</p>
+                <input type="text" class="task-text" id="weekly-task-input">
+            </div>
+            <div  id="weekly-checklist">
+            </div>
+        </div>
+        <div class="monthlies">
+            <div class="top-bar">
+                <h1>Monthlies</h1>
+                <button class="add-button" id="add-monthly-button"><span>&#43;</span></button>
+                <button class="dropdown-button" id="monthly-dropdown" data-target="monthly-checklist"><span>	&#9660;</span></button>
+            </div>
+            <hr>
+            <div class="task-creation" id="monthly-creation">
+                <p>Task:</p>
+                <input type="text" class="task-text" id="monthly-task-input">
+            </div>
+            <div  id="monthly-checklist">
+            </div>
+        </div>
+
+        <div class="goals">
+            <div class="top-bar">
+                <h1>Goals</h1>
+                <button class="add-button" id="add-goal-button"><span>&#43;</span></button>
+                <button class="dropdown-button" id="goal-dropdown" data-target="goal-checklist"><span>	&#9660;</span></button>
+            </div>
+            <hr>
+            <div class="task-creation" id="goal-creation">
+                <p>Task:</p>
+                <input type="text" class="task-text" id="goal-task-input">
+            </div>
+            <div  id="goal-checklist">
+            </div>
+        </div>
+
+        <div class="schedule">
+            <p> --- Schedule goes here --- </p>
+        </div>
+        <img class="bottom-right-curve" src="images/corner.png">
+        <img class="bottom-left-curve" src="images/corner.png">
+    </main>
+    <script src="scripts/script.js"></script>
+</body>
+</html>
+
+<!-- ? Smallest screens 320 px -->
+<!-- ? Medium screens 640 - 1024 px -->
+<!-- ? Large screens 1024 px and onwards (over 2600px)-->

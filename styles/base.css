@@ -1,0 +1,167 @@
+body {
+    color:aliceblue;
+    background-color:black;
+    margin: 0px;
+}
+
+header {
+    margin: 0px;
+    margin-bottom: 32px;
+    padding: 5px;
+    background-color: rgb(5, 15, 25);
+}
+
+h1 {
+    font-size: 20px;
+    margin: 0px;
+}
+
+main {
+    border: 3px solid #ffb300;
+}
+
+.user-info {
+    display: grid;
+    grid-template-columns: 50px auto;
+}
+
+.username {
+    margin-top: 10px;
+}
+
+.user-img {
+    width: 40px;
+    height: 40px;
+}
+
+.top-left-curve {
+    float: left;
+    margin: -43px;
+    margin-top: -36px;
+}
+
+.top-right-curve {
+    margin: -43px;
+    margin-top: -36px;
+    transform: scaleX(-1);
+    float: right;
+}
+
+.bottom-left-curve {
+    float: bottom;
+    float: bottom;
+    margin: -43px;
+    margin-bottom: -39px;
+    transform: scaleY(-1);
+}
+
+.bottom-right-curve {
+    margin: -43px;
+    margin-top: -35px; 
+    transform: scale(-1);
+    float: right;
+}
+
+.add-button {
+    margin: 0px 10px 2px 0px;
+    font-size: 20px;
+}
+
+.dropdown-button {
+    margin: 0px 0px 2px 10px;
+    font-size: 13px;
+}
+
+.top-bar {
+    display:grid;
+    grid-template-columns: 45% 30% 25%;
+    grid-template-rows: auto;
+}
+
+.habits, .goals, .daylies, .weeklies, .monthlies {
+    color: white;
+    padding: 10px;
+    margin: 15px;
+    background-color: rgb(5, 15, 25, 0.25);
+    border-color: rgb(100, 0, 0);
+    border-style:double;
+    border-radius: 2px;
+}
+
+.schedule {
+    text-align: center;
+    color:black;
+    padding: 1px;
+    margin: 5px;
+    background-color: rgb(255, 255, 255);
+}
+
+main div div {
+    padding: 0px;
+    margin: 0px;
+}
+
+.list-item {
+    color: rgb(150, 0, 0);
+    background-color: rgb(5, 15, 25);
+    border-color: rgb(100, 60, 60);
+    border-style: inset;
+    margin: 10px 5px;
+    padding: 0px 15px 0px 15px;
+    display: grid;
+    grid-template-columns: 50px auto;
+    grid-template-rows: auto;
+}
+
+p {
+    font-size: 18px;
+}
+
+.list-item p {
+    grid-column: 2/3;
+    align-self: start;
+    
+}
+
+.checkbox-label input {
+    width: 25px;
+    height: 25px;
+}
+
+.checkbox-label {
+    align-self: center;
+}
+
+.top-bar h1 {
+    align-self: end;
+}
+
+hr {
+    margin: 0px;
+}
+
+h2 {
+    font-size: 15px;
+}
+
+.task-creation {
+    background-color: rgb(5, 15, 25);
+    padding: 10px;
+    flex-direction: row;
+    display: none; /* This will be toggled on and off */
+}
+
+.task-creation p {
+    background-color: rgb(5, 15, 25);
+    margin: 0px;
+}
+
+.task-creation input {
+    background-color: rgb(20, 60, 100);
+    margin-left: 5px;
+    color: white;
+}
+
+.task-text {
+    width: 80%
+}
