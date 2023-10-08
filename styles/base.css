@@ -83,7 +83,7 @@ main {
     padding: 10px;
     margin: 15px;
     background-color: rgb(5, 15, 25, 0.25);
-    border-color: rgb(100, 0, 0);
+    border-color: rgb(0, 175, 250);
     border-style:double;
     border-radius: 2px;
 }
@@ -102,9 +102,9 @@ main div div {
 }
 
 .list-item {
-    color: rgb(150, 0, 0);
+    color: rgb(130, 0, 255);
     background-color: rgb(5, 15, 25);
-    border-color: rgb(100, 60, 60);
+    border-color: rgb(40, 20, 70);
     border-style: inset;
     margin: 10px 5px;
     padding: 0px 15px 0px 15px;
@@ -165,3 +165,18 @@ h2 {
 .task-text {
     width: 80%
 }
+
+
+/* Good colors
+Cyan
+rgb(0, 175, 250)
+rgb(0, 100, 120)
+
+Violet
+rgb(130, 0, 255)
+rgb(40, 20, 70)
+
+Red
+rgb(255, 0, 0)
+rgb(100, 60, 60)
+*/
