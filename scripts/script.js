@@ -1,4 +1,102 @@
 
+for (let i = 0; i < localStorage.length; i++) {
+    const key = localStorage.key(i);
+    const value = localStorage.getItem(key);
+    console.log(`${key}: ${value}`);
+}
+
+// ! Functions for saving and loading items from Json
+
+function saveChecklistData() {
+
+
+    const dataToSave = {
+        habits: [],
+        daylies: [],
+        weeklies: [],
+        monthlies: [],
+        goals: [],
+    };
+
+    // Collect data from each checklist and store it in dataToSave
+    const collectChecklistData = function(category, checklistSelector) { 
+        const checkboxes = document.querySelectorAll(`.${category} ${checklistSelector} .checkbox-label input[type="checkbox"]`);
+        checkboxes.forEach(function(checkbox) {
+            const listItem = checkbox.closest('.list-item');
+            const taskText = listItem.querySelector('span').textContent;
+            const completed = checkbox.checked;
+
+            dataToSave[category].push({ name:taskText, completed: completed });
+        });
+    };
+
+    collectChecklistData('habits', '#habit-checklist');
+    collectChecklistData('daylies', '#daily-checklist');
+    collectChecklistData('weeklies', '#weekly-checklist');
+    collectChecklistData('monthlies', '#monthly-checklist');
+    collectChecklistData('goals', '#goal-checklist');
+
+    // Save the data to localStorage
+    localStorage.setItem('checklistData', JSON.stringify(dataToSave));
+
+}
+
+// Function to load checklist data from localStorage
+function loadChecklistData() {
+
+
+    const data = localStorage.getItem('checklistData');
+    if (data) {
+        const parsedData = JSON.parse(data);
+
+        // Load data into each checklist
+        const loadChecklist = function(category, checklistSelector) {
+            const checklist = document.querySelector(`.${category} ${checklistSelector}`);
+            parsedData[category].forEach(function(item) {
+                const listItem = document.createElement('div');
+                listItem.classList.add('list-item');
+                const checkboxLabel = document.createElement('label');
+                checkboxLabel.classList.add('checkbox-label');
+                const checkbox = document.createElement('input');
+                checkbox.type = 'checkbox';
+                const taskText = document.createElement('span');
+                taskText.textContent = item.name;
+                const deleteButton = document.createElement("button");
+                deleteButton.classList.add("delete-button")
+                deleteButton.textContent = "×"
+                checkboxLabel.appendChild(checkbox);
+                checkboxLabel.appendChild(taskText);
+                listItem.appendChild(checkboxLabel);
+                listItem.appendChild(deleteButton);
+                addCrossingOutEffect(checkbox, listItem);
+                checklist.appendChild(listItem);
+                itemIdCounter++;
+
+
+                checkbox.checked = item.completed;
+                if (item.completed == true) {
+                    taskText.style.textDecoration = 'line-through';
+                    taskText.style.textDecorationColor = 'white'; // Set your desired color here
+                    taskText.style.color = 'grey'; // Set your desired text color here
+                    listItem.style.borderColor = 'grey';
+                    listItem.style.backgroundColor = "rgb(15, 15, 15)";
+                }
+            });
+        };
+
+        loadChecklist('habits', '#habit-checklist');
+        loadChecklist('daylies', '#daily-checklist');
+        loadChecklist('weeklies', '#weekly-checklist');
+        loadChecklist('monthlies', '#monthly-checklist');
+        loadChecklist('goals', '#goal-checklist');
+
+        // Crossing out completed checkboxes 
+    }
+}
+
+window.addEventListener('load', loadChecklistData);
+
+
 // ! Open Task creatrion
 // Function to toggle task creation div based on button click
 function toggleTaskCreation(target) {
@@ -42,30 +140,8 @@ const checklist = document.getElementById('checklist');
 // Initialize a counter variable
 let itemIdCounter = 1;
 
-// Function to add the crossing out effect to a checkbox
-function addCrossingOutEffect(checkbox, listItem) {
-    checkbox.addEventListener('change', function() {
-        const taskText = listItem.querySelector('p'); // Select the <p> element within the same .list-item
-        
-        if (this.checked) {
-            taskText.style.textDecoration = 'line-through';
-            taskText.style.textDecorationColor = 'white'; // Set your desired color here
-            taskText.style.color = 'grey'; // Set your desired text color here
-            listItem.style.borderColor = 'grey';
-            listItem.style.backgroundColor = "rgb(15, 15, 15)";
-        
-        } else {
-            taskText.style.textDecoration = 'none';
-            taskText.style.textDecorationColor = 'initial'; // Reset text decoration color to its default
-            taskText.style.color = 'rgb(150, 0, 0)'; // Reset text color to its default
-            listItem.style.borderColor = 'rgb(100, 60, 60)'; // Reset border color to its default
-            listItem.style.backgroundColor = 'rgb(5, 15, 25)'; // Reset background color to its default
-        }
-    });
-}
-
 // Add event listeners to all existing checkboxes for Habits
-const habitCheckboxes = document.querySelectorAll('.habits .checkbox-label input[type="checkbox"]');
+const habitCheckboxes = document.querySelectorAll('.habit .checkbox-label input[type="checkbox"]');
 habitCheckboxes.forEach(function(checkbox) {
     const listItem = checkbox.closest('.list-item');
     addCrossingOutEffect(checkbox, listItem);
@@ -117,13 +193,22 @@ habitTaskInput.addEventListener('keyup', function(event) {
         const checkbox = document.createElement('input');
         checkbox.type = 'checkbox';
 
-        const taskText = document.createElement('p');
-        taskText.textContent =habitTaskInput.value;
+        const taskText = document.createElement('span');
+        taskText.textContent = habitTaskInput.value;
+
+        // ! ADD TO EACH
+        const deleteButton = document.createElement("button");
+        deleteButton.classList.add("delete-button")
+        deleteButton.textContent = "×";
+
+        const deleteButtonID = `delete-button-${itemIdCounter}`
+        deleteButton.id = deleteButtonID;
 
         // Append elements to build the checklist item
         checkboxLabel.appendChild(checkbox);
+        checkboxLabel.appendChild(taskText);
         listItem.appendChild(checkboxLabel);
-        listItem.appendChild(taskText);
+        listItem.appendChild(deleteButton); // ! ADD TO EACH
 
         // Add the crossing out effect to the newly created checkbox for Weeklies
         addCrossingOutEffect(checkbox, listItem);
@@ -137,6 +222,10 @@ habitTaskInput.addEventListener('keyup', function(event) {
 
         // Increment the counter variable for the next item
         itemIdCounter++;
+
+        toggleContainerVisibility('habit-dropdown', 'habit-checklist', true);
+
+        saveChecklistData(); // ?
     }
 });
 
@@ -158,13 +247,21 @@ dailyTaskInput.addEventListener('keyup', function(event) {
         const checkbox = document.createElement('input');
         checkbox.type = 'checkbox';
 
-        const taskText = document.createElement('p');
+        const taskText = document.createElement('span');
         taskText.textContent = dailyTaskInput.value;
+
+        const deleteButton = document.createElement("button");
+        deleteButton.classList.add("delete-button")
+        deleteButton.textContent = "×";
+
+        const deleteButtonID = `delete-button-${itemIdCounter}`
+        deleteButton.id = deleteButtonID;
 
         // Append elements to build the checklist item
         checkboxLabel.appendChild(checkbox);
+        checkboxLabel.appendChild(taskText);
         listItem.appendChild(checkboxLabel);
-        listItem.appendChild(taskText);
+        listItem.appendChild(deleteButton);
 
         // Add the crossing out effect to the newly created checkbox for Weeklies
         addCrossingOutEffect(checkbox, listItem);
@@ -178,6 +275,10 @@ dailyTaskInput.addEventListener('keyup', function(event) {
 
         // Increment the counter variable for the next item
         itemIdCounter++;
+
+        toggleContainerVisibility('daily-dropdown', 'daily-checklist', true);
+
+        saveChecklistData(); // ?
     }
 });
 
@@ -199,13 +300,21 @@ weeklyTaskInput.addEventListener('keyup', function(event) {
         const checkbox = document.createElement('input');
         checkbox.type = 'checkbox';
 
-        const taskText = document.createElement('p');
+        const taskText = document.createElement('span');
         taskText.textContent = weeklyTaskInput.value;
+
+        const deleteButton = document.createElement("button");
+        deleteButton.classList.add("delete-button")
+        deleteButton.textContent = "×";
+
+        const deleteButtonID = `delete-button-${itemIdCounter}`
+        deleteButton.id = deleteButtonID;
 
         // Append elements to build the checklist item
         checkboxLabel.appendChild(checkbox);
+        checkboxLabel.appendChild(taskText);
         listItem.appendChild(checkboxLabel);
-        listItem.appendChild(taskText);
+        listItem.appendChild(deleteButton);
 
         // Add the crossing out effect to the newly created checkbox for Weeklies
         addCrossingOutEffect(checkbox, listItem);
@@ -219,6 +328,10 @@ weeklyTaskInput.addEventListener('keyup', function(event) {
 
         // Increment the counter variable for the next item
         itemIdCounter++;
+
+        toggleContainerVisibility('weekly-dropdown', 'weekly-checklist', true);
+
+        saveChecklistData(); // ?
     }
 });
 
@@ -240,13 +353,21 @@ monthlyTaskInput.addEventListener('keyup', function(event) {
         const checkbox = document.createElement('input');
         checkbox.type = 'checkbox';
 
-        const taskText = document.createElement('p');
+        const taskText = document.createElement('span');
         taskText.textContent = monthlyTaskInput.value;
+
+        const deleteButton = document.createElement("button");
+        deleteButton.classList.add("delete-button")
+        deleteButton.textContent = "×";
+
+        const deleteButtonID = `delete-button-${itemIdCounter}`
+        deleteButton.id = deleteButtonID;
 
         // Append elements to build the checklist item
         checkboxLabel.appendChild(checkbox);
+        checkboxLabel.appendChild(taskText);
         listItem.appendChild(checkboxLabel);
-        listItem.appendChild(taskText);
+        listItem.appendChild(deleteButton);
 
         // Add the crossing out effect to the newly created checkbox for Monthlies
         addCrossingOutEffect(checkbox, listItem);
@@ -260,6 +381,10 @@ monthlyTaskInput.addEventListener('keyup', function(event) {
 
         // Increment the counter variable for the next item
         itemIdCounter++;
+
+        toggleContainerVisibility('monthly-dropdown', 'monthly-checklist', true);
+
+        saveChecklistData(); // ?
     }
 });
 
@@ -281,13 +406,21 @@ goalTaskInput.addEventListener('keyup', function(event) {
         const checkbox = document.createElement('input');
         checkbox.type = 'checkbox';
 
-        const taskText = document.createElement('p');
+        const taskText = document.createElement('span');
         taskText.textContent = goalTaskInput.value;
+
+        const deleteButton = document.createElement("button");
+        deleteButton.classList.add("delete-button")
+        deleteButton.textContent = "×";
+
+        const deleteButtonID = `delete-button-${itemIdCounter}`
+        deleteButton.id = deleteButtonID;
 
         // Append elements to build the checklist item
         checkboxLabel.appendChild(checkbox);
+        checkboxLabel.appendChild(taskText);
         listItem.appendChild(checkboxLabel);
-        listItem.appendChild(taskText);
+        listItem.appendChild(deleteButton);
 
         // Add the crossing out effect to the newly created checkbox for Weeklies
         addCrossingOutEffect(checkbox, listItem);
@@ -301,22 +434,63 @@ goalTaskInput.addEventListener('keyup', function(event) {
 
         // Increment the counter variable for the next item
         itemIdCounter++;
+
+        toggleContainerVisibility('goal-dropdown', 'goal-checklist', true);
+
+        saveChecklistData();
     }
 });
 
+// ! Delete button 
+// Function to add the crossing out effect to a checkbox and set up delete button
+function addCrossingOutEffect(checkbox, listItem) {
+    const checkboxVariable = listItem.querySelector('label');
+    const taskText = checkboxVariable.querySelector('span'); // Select the <span> element within the same .list-item
+    const deleteButton = listItem.querySelector('.delete-button'); // Select the delete button
+
+    // Add an event listener to the delete button
+    deleteButton.addEventListener('click', function() {
+        listItem.remove(); // Remove the parent list item when the delete button is clicked
+        saveChecklistData(); // Save the updated checklist data
+    });
+
+    checkbox.addEventListener('change', function() {
+        if (this.checked) {
+            taskText.style.textDecoration = 'line-through';
+            taskText.style.textDecorationColor = 'white'; // Set your desired color here
+            taskText.style.color = 'grey'; // Set your desired text color here
+            listItem.style.borderColor = 'grey';
+            listItem.style.backgroundColor = "rgb(15, 15, 15)";
+        } else {
+            taskText.style.textDecoration = 'none';
+            taskText.style.textDecorationColor = 'initial'; // Reset text decoration color to its default
+            taskText.style.color = 'rgb(150, 0, 0)'; // Reset text color to its default
+            listItem.style.borderColor = 'rgb(100, 60, 60)'; // Reset border color to its default
+            listItem.style.backgroundColor = 'rgb(5, 15, 25)'; // Reset background color to its default
+        }
+
+        saveChecklistData(); // Save the updated checklist data
+    });
+}
+
 // ! use dropdown buttons
 // Function to toggle visibility of the container based on dropdown click
-function toggleContainerVisibility(dropdownId, containerId) {
+function toggleContainerVisibility(dropdownId, containerId, openOnly=false) {
+
     const dropdownButton = document.getElementById(dropdownId);
     const container = document.getElementById(containerId);
 
-    dropdownButton.addEventListener('click', function () {
-        if (container.style.display === 'none' || container.style.display === '') {
-            container.style.display = 'grid'; // Show the container
-        } else {
-            container.style.display = 'none'; // Hide the container
-        }
-    });
+    if (openOnly == false) {
+        dropdownButton.addEventListener('click', function () {
+            if (container.style.display === 'none' || container.style.display === '') {
+                container.style.display = 'grid'; // Show the container
+            } else {
+                container.style.display = 'none'; // Hide the container
+            }
+        });
+    } else {
+        container.style.display = 'grid'; // Show the container
+    }
 }
 
 // Add event listeners for each dropdown and its corresponding container
@@ -325,49 +499,3 @@ toggleContainerVisibility('daily-dropdown', 'daily-checklist');
 toggleContainerVisibility('weekly-dropdown', 'weekly-checklist');
 toggleContainerVisibility('monthly-dropdown', 'monthly-checklist');
 toggleContainerVisibility('goal-dropdown', 'goal-checklist');
-
-// ! Setup my local storage Json file 
-// Function to check if local storage is empty
-function hasDesiredStructure() {
-    const desiredKeys = ["Habits", "Goals", "Daylies", "Weeklies", "Monthlies"];
-    
-    for (const key of desiredKeys) {
-        if (!localStorage.hasOwnProperty(key)) {
-            return false;
-        }
-    }
-    
-    return true;
-}
-
-// Function to write data to local storage
-function writeDataToLocalStorage(dataKey, data) {
-    localStorage.setItem(dataKey, JSON.stringify(data));
-    console.log('Data has been written to local storage.');
-}
-
-// Specify the data key for your current data
-const dataKey = 'currentData';
-
-// Read local storage and check if it's empty
-if (!hasDesiredStructure()) {
-    // Define the initial data
-    const initialData = {
-        "Habits": {},
-        "Goals": {},
-        "Daylies": {},
-        "Weeklies": {},
-        "Monthlies": {}
-    };
-
-    // Write the initial data to local storage
-    writeDataToLocalStorage(dataKey, initialData);
-} else {
-    console.log('Local storage is not empty. No action taken.');
-}
-
-for (let i = 0; i < localStorage.length; i++) {
-    const key = localStorage.key(i);
-    const value = localStorage.getItem(key);
-    console.log(`${key}: ${value}`);
-}

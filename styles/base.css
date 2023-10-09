@@ -45,6 +45,8 @@ main {
     margin-top: -36px;
     transform: scaleX(-1);
     float: right;
+    position: relative;
+    z-index: 1;
 }
 
 .bottom-left-curve {
@@ -65,11 +67,18 @@ main {
 .add-button {
     margin: 0px 10px 2px 0px;
     font-size: 20px;
+    z-index: 2;
 }
 
 .dropdown-button {
     margin: 0px 0px 2px 10px;
     font-size: 13px;
+    position: relative;
+    z-index: 2;
+}
+
+.add-button:hover, .dropdown-button:hover {
+    background-color: #ffb300;
 }
 
 .top-bar {
@@ -107,9 +116,10 @@ main div div {
     border-color: rgb(40, 20, 70);
     border-style: inset;
     margin: 10px 5px;
-    padding: 0px 15px 0px 15px;
+    padding: 10px;
+    padding-left: 15px;
     display: grid;
-    grid-template-columns: 50px auto;
+    grid-template-columns: auto 50px;
     grid-template-rows: auto;
 }
 
@@ -117,19 +127,26 @@ p {
     font-size: 18px;
 }
 
-.list-item p {
+.list-item span {
     grid-column: 2/3;
-    align-self: start;
-    
-}
-
-.checkbox-label input {
-    width: 25px;
-    height: 25px;
+    margin-left: 10px;  
+    margin-right: 5px;
 }
 
 .checkbox-label {
-    align-self: center;
+    display: flex;
+    align-items: center; /* Center content vertically with equal space above and below */
+}
+
+.list-item button {
+    color: rgb(0, 175, 250);
+    background-color: black;
+    font-size: 24px;
+}
+
+.checkbox-label input {
+    min-width: 25px;
+    min-height: 25px;
 }
 
 .top-bar h1 {
@@ -149,6 +166,11 @@ h2 {
     padding: 10px;
     flex-direction: row;
     display: none; /* This will be toggled on and off */
+}
+
+.task-creation input:hover, .task-creation input:focus {
+    background-color: rgb(0, 0, 0);
+    border-color: #ffb300;
 }
 
 .task-creation p {
