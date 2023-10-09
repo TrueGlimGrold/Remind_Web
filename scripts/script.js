@@ -1,3 +1,8 @@
+document.querySelector('.background-border').addEventListener('click', function(event) {
+    event.preventDefault();
+    event.stopPropagation();
+});
+
 
 for (let i = 0; i < localStorage.length; i++) {
     const key = localStorage.key(i);
