@@ -2,11 +2,17 @@
 
 I have always liked high organization in my life. And I highly value the importance of doapamine, through checklists and simular tasks. 
 
-The goal here is to create a habit, daily, and goal tracking app that organizes your efforts into different categories and is easy to navigate. I want to make it as comprehensive as possible, while also leaving it simeple and easy to learn. Making the project look professional is highly important, as that will come across better to users. 
+The goal here is to create a habit, daily, and goal tracking app that organizes your efforts into different categories and is easy to navigate. I want to make it as comprehensive as possible, while also leaving it simple and easy to learn. Making the project look professional is highly important, as that will come across better to users. 
 
 {Provide a description the web app that you wrote. Describe how to start a test server on your computer and what website to open up to see the first page of the app.}
 
-At the moment you can acess the app by opening it up on a live server through Visual studio code. 
+You can acess my app through the following link:
+[Remind Websight](http://youtube.link.goes.here)
+
+Click the plus sign beside a task title to add a new checklist item. Then type in the textbox the name of your new task and press enter.
+You can make as many tasks as you want. 
+Use the dropdown arrow to show and hide tasks. 
+If you don't need a task anymore, you can hit the delete button to remove the task.
 
 {Provide a link to your YouTube demonstration.  It should be a 4-5 minute demo of the software running (starting the server and navigating through the web pages) and a walkthrough of the code.}
 

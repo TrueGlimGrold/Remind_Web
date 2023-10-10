@@ -1,0 +1,86 @@
+@media only screen and (min-width: 640px) {
+    .content {
+        width: auto;
+        display: grid;
+        grid-template-columns: 50% 50%;
+        grid-template-rows: auto auto auto auto auto;
+        padding-right: 10%;
+        padding-left: 10%;
+        padding-top: 120px;
+    }
+
+    .top-squig, .bottom-squig, .left-squig, .right-squig {
+        display: block;
+    }
+
+    .top-squig {
+        position: absolute;
+        top: 90px;
+        margin: auto;
+        right: 0;
+        left: 0; 
+    } 
+
+    .bottom-squig {
+        position: absolute;
+        bottom: 11px;
+        margin: auto;
+        left: 0;
+        right: 0;
+        transform: scaleY(-1);
+    } 
+    
+    .left-squig {
+        position: absolute;
+        left: -58px;
+        margin: auto;
+        top: 0;
+        bottom: 0;
+        rotate: 270deg;
+    }
+    
+    .right-squig {
+        position: absolute;
+        right: -58px;
+        margin: auto;
+        top: 0;
+        bottom: 0;
+        rotate: 90deg;
+    }
+
+    .habits, .goals, .daylies, .weeklies, .monthlies {
+        padding: 10px;
+        margin: 15px 5px;
+    }
+
+    .habits {
+        grid-column: 1/2;
+        grid-row: 1/2;
+    }
+
+    .daylies {
+        grid-column: 1/2;
+        grid-row: 2/3;
+    }
+
+    .weeklies {
+        grid-column: 1/2;
+        grid-row: 3/4;
+    }
+
+    .monthlies {
+        grid-column: 1/2;
+        grid-row: 4/5;
+    }
+
+    .goals {
+        grid-column: 1/2;
+        grid-row: 5/6;
+    }
+
+    .schedule {
+        grid-column: 2/3;
+        grid-row: 1/6;
+        margin: 15px 5px;;
+    }
+}

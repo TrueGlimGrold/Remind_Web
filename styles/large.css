@@ -1,0 +1,40 @@
+@media only screen and (min-width: 1024px) {
+    .content {
+        grid-template-columns: 33.3% 33.3% 33.3%;
+        grid-template-rows: auto auto auto;
+        padding-right: 10%;
+        padding-left: 10%;
+        padding-top: 120px;
+    }
+
+    .habits {
+        grid-column: 1/2;
+        grid-row: 1/2;
+    }
+
+    .daylies {
+        grid-column: 2/3;
+        grid-row: 1/2;
+    }
+
+    .weeklies {
+        grid-column: 2/3;
+        grid-row: 2/3;
+    }
+
+    .monthlies {
+        grid-column: 2/3;
+        grid-row: 3/4;
+    }
+
+    .goals {
+        grid-column: 1/2;
+        grid-row: 2/3;
+    }
+
+    .schedule {
+        grid-column: 3/4;
+        grid-row: 1/4;
+        margin: 15px 5px;;
+    }
+}

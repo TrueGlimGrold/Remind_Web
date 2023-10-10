@@ -60,8 +60,8 @@ h1 {
     position: fixed;
     top: 80px;
     left: 0px;
+    Right: 0px;
     bottom: 32px;
-    width: 100%; /* Adjust the width as needed */
     background-color: transparent;
     pointer-events: none;
     z-index: 12;
@@ -93,33 +93,37 @@ h1 {
 
 .top-left-curve {
     z-index: 13;
-    left: -43px;
-    top: 48px;
+    left: -26px;
+    top: 54px;
     position: absolute;
 }
 
 .top-right-curve {
     z-index: 13;
-    right: -43px;
-    top: 48px;
+    right: -26px;
+    top: 54px;
     position: absolute;
     transform: scaleX(-1);
 }
 
 .bottom-left-curve {
     z-index: 13;
-    left: -43px;
-    bottom: 0px;
+    left: -26px;
+    bottom: 6px;
     position: absolute;
     transform: scaleY(-1);
 }
 
 .bottom-right-curve {
     z-index: 13;
-    right: -43px;
-    bottom: 0px;
+    right: -26px;
+    bottom: 6px;
     position: absolute;
     transform: scale(-1);
+}
+
+.top-squig, .bottom-squig, .left-squig, .right-squig {
+    display: none;
 }
 
 .add-button {
