@@ -175,7 +175,21 @@ main div div {
     margin: 0px;
 }
 
+
 .list-item {
+    color: rgb(0, 175, 250);
+    background-color: rgb(5, 15, 25);
+    border-color: rgb(0, 100, 120);
+    border-style: inset;
+    margin: 10px 5px;
+    padding: 10px;
+    padding-left: 15px;
+    display: grid;
+    grid-template-columns: auto 50px;
+    grid-template-rows: auto;
+}
+
+/* .list-item {
     color: rgb(130, 0, 255);
     background-color: rgb(5, 15, 25);
     border-color: rgb(40, 20, 70);
@@ -186,7 +200,20 @@ main div div {
     display: grid;
     grid-template-columns: auto 50px;
     grid-template-rows: auto;
-}
+} */
+
+/* .list-item {
+    color: rgb(255, 0, 0);
+    background-color: rgb(5, 15, 25);
+    border-color: rgb(100, 60, 60);
+    border-style: inset;
+    margin: 10px 5px;
+    padding: 10px;
+    padding-left: 15px;
+    display: grid;
+    grid-template-columns: auto 50px;
+    grid-template-rows: auto;
+} */
 
 p {
     font-size: 18px;

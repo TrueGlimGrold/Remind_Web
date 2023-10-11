@@ -201,7 +201,6 @@ habitTaskInput.addEventListener('keyup', function(event) {
         const taskText = document.createElement('span');
         taskText.textContent = habitTaskInput.value;
 
-        // ! ADD TO EACH
         const deleteButton = document.createElement("button");
         deleteButton.classList.add("delete-button")
         deleteButton.textContent = "×";
@@ -213,7 +212,7 @@ habitTaskInput.addEventListener('keyup', function(event) {
         checkboxLabel.appendChild(checkbox);
         checkboxLabel.appendChild(taskText);
         listItem.appendChild(checkboxLabel);
-        listItem.appendChild(deleteButton); // ! ADD TO EACH
+        listItem.appendChild(deleteButton);
 
         // Add the crossing out effect to the newly created checkbox for Weeklies
         addCrossingOutEffect(checkbox, listItem);

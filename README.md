@@ -12,9 +12,7 @@ You can make as many tasks as you want.
 Use the dropdown arrow to show and hide tasks. 
 If you don't need a task anymore, you can hit the delete button to remove the task.
 
-{Provide a link to your YouTube demonstration.  It should be a 4-5 minute demo of the software running (starting the server and navigating through the web pages) and a walkthrough of the code.}
-
-[Software Demo Video](http://youtube.link.goes.here)
+[Software Demo Video](https://youtu.be/3wrpQSaQ3ZE)
 
 # Web Page
 
@@ -40,3 +38,4 @@ I used Html, Css, and JavaScript.
 * I want to make it so that various people can log onto the app with seperate usernames. I will use this using firestore database working with Django. 
 * I want to make this app communicate with an android application using a database. 
 * I want to make it so that people can push a button beside the checklist items, that allows them to schedule a time they will complete the item. Then I want them to be able to scroll through, and navigate the schedule. 
+* I want to apply textures to my background-border, as well as most of the div elements.
