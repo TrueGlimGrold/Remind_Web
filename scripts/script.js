@@ -445,7 +445,7 @@ goalTaskInput.addEventListener('keyup', function(event) {
     }
 });
 
-// ! Delete button 
+// ! Delete button / crossing out effect
 // Function to add the crossing out effect to a checkbox and set up delete button
 function addCrossingOutEffect(checkbox, listItem) {
     const checkboxVariable = listItem.querySelector('label');
@@ -457,7 +457,8 @@ function addCrossingOutEffect(checkbox, listItem) {
         listItem.remove(); // Remove the parent list item when the delete button is clicked
         saveChecklistData(); // Save the updated checklist data
     });
-
+    
+// Crossing out effect here
     checkbox.addEventListener('change', function() {
         if (this.checked) {
             taskText.style.textDecoration = 'line-through';
@@ -503,3 +504,4 @@ toggleContainerVisibility('daily-dropdown', 'daily-checklist');
 toggleContainerVisibility('weekly-dropdown', 'weekly-checklist');
 toggleContainerVisibility('monthly-dropdown', 'monthly-checklist');
 toggleContainerVisibility('goal-dropdown', 'goal-checklist');
+

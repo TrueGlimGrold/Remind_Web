@@ -147,6 +147,8 @@ h1 {
     grid-template-rows: auto;
 }
 
+/* ! These need to change color individually  */
+
 .habits, .goals, .daylies, .weeklies, .monthlies {
     color: white;
     padding: 10px;
@@ -175,7 +177,7 @@ main div div {
     margin: 0px;
 }
 
-
+/* ! This needs to change color  */
 .list-item {
     color: rgb(0, 175, 250);
     background-color: rgb(5, 15, 25);
@@ -188,32 +190,6 @@ main div div {
     grid-template-columns: auto 50px;
     grid-template-rows: auto;
 }
-
-/* .list-item {
-    color: rgb(130, 0, 255);
-    background-color: rgb(5, 15, 25);
-    border-color: rgb(40, 20, 70);
-    border-style: inset;
-    margin: 10px 5px;
-    padding: 10px;
-    padding-left: 15px;
-    display: grid;
-    grid-template-columns: auto 50px;
-    grid-template-rows: auto;
-} */
-
-/* .list-item {
-    color: rgb(255, 0, 0);
-    background-color: rgb(5, 15, 25);
-    border-color: rgb(100, 60, 60);
-    border-style: inset;
-    margin: 10px 5px;
-    padding: 10px;
-    padding-left: 15px;
-    display: grid;
-    grid-template-columns: auto 50px;
-    grid-template-rows: auto;
-} */
 
 p {
     font-size: 18px;
@@ -230,7 +206,8 @@ p {
     align-items: center; /* Center content vertically with equal space above and below */
 }
 
-.list-item button {
+/* ! This needs to change color  */
+.list-item button { 
     color: rgb(0, 175, 250);
     background-color: black;
     font-size: 24px;
